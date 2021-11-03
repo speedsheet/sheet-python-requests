@@ -1,0 +1,730 @@
+# <#>Requests<> SpeedSheet
+<b>What you need, faster.<>
+
+<*>Use <b>Search<> to Find Answers Fast (above)
+Answers Get Right To The Point
+Covers The <b>requests HTTP Library<> for Python<>
+
+
+
+# Online Links
+
+
+
+### Requests Documents
+<l>https://docs.python-requests.org/en/master/<>
+
+
+
+### Requests Library on PyPi
+<l>https://pypi.org/project/requests/<>
+
+
+# Library
+
+
+## Install Library - pip
+
+<cb>pip install requests<>
+@
+@ command, commandline
+
+
+
+## Install Library - pip requirements.txt
+
+requirements.txt:
+
+<cb>requests<>
+
+Command:
+
+<cb>pip install -r requiremets.txt<>
+@
+@ command, commandline
+
+
+
+## Program - Import
+
+<cb>import requests<>
+
+
+
+# Request Basics - POST / JSON
+
+<cb>import requests
+
+<v>url<> = "https://httpbin.org/post"
+
+<v>request_data<> = {
+        "field-1": "value 1",
+        "field-2": "value 2"}
+
+<v>response<> = requests.post (<v>url<>, json = <v>request_data<>)
+<v>response_data<> = <v>response<>.json()
+
+print("url:", <v>response<>.url)
+print("status:", <v>response<>.status_code)
+print("JSON:", <v>response_data<>)<>
+@
+@ example, hello world, hello-world
+
+
+
+# Send Request Verbs
+@
+@ make, call url, commands
+
+
+
+### Send Get
+
+<cb>= requests.get(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>')<>
+@
+@ requests.get(), .get()
+
+
+
+### Send Get - With Parameters
+
+Use <c>params<>:
+
+<cb>= requests.get(<v>url<>, params = <v>params_dict<>)<>
+
+
+Example:
+
+<cb><#># Sends: https://httpbin.org/get?param_1=value+1&param_2=value+2<>
+
+import requests
+
+<v>url<> = "https://httpbin.org/get"
+
+<v>params<> = {
+    "<v>param_1<>": "value 1",
+    "<v>param_2<>": "value 2"}
+
+<v>response<> = requests.get(<v>url<>, params = <v>params<>)<>
+@
+@ requests.get(), .get()
+
+
+
+### Send Post
+
+<cb>= requests.post(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.post('<v>https://httpbin.org/post<>')<>
+@
+@ requests.post(), .post()
+
+
+
+### Send Put
+
+<cb>= requests.put(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.put('<v>https://httpbin.org/put<>')<>
+@
+@ requests.put(), .put()
+
+
+
+### Send Patch
+
+<cb>= requests.patch(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.patch('<v>https://httpbin.org/patch<>')<>
+@
+@ requests.patch(), .patch()
+
+
+
+### Send Delete
+
+<cb>= requests.delete(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.delete('<v>https://httpbin.org/delete<>')<>
+@
+@ requests.delete(), .delete()
+
+
+
+### Send Head
+
+<cb>= requests.head(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.head('<v>https://httpbin.org/head<>')<>
+@
+@ requests.head(), .head()
+
+
+
+### Send Options
+
+<cb>= requests.options(<v>url<>)<>
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.options('<v>https://httpbin.org/options<>')<>
+@
+@ requests.options(), .options()
+
+
+
+# Request Properties
+@
+@ send
+
+
+
+### Set Cookies
+
+<cb><v>cookies_1<> = requests.cookies.RequestsCookieJar()
+<v>cookies_1<>.set(<v>cookie_name<>, <v>value<>)
+
+<v>response<> = request(<v>url<>, cookies = <v>cookies_1<>)<>
+
+Set Cookie:
+
+<cb><v>cookies_1<>.set(<v>cookie_name<>, <v>value<>)<>
+
+Set Cookie / Full Properties:
+
+<cb><v>cookies_1<>.set(<v>cookie_name<>, <v>value<>, domain = <v>domain_name<>, path = <v>domain_path<>)<>
+
+
+Example:
+
+<cb>import requests
+
+<v>url<> = "https://httpbin.org/cookies"
+
+<v>cookies<> = requests.cookies.RequestsCookieJar()
+
+<v>cookies<>.set("cookie_1", "Cookie Value 1")
+<v>cookies<>.set("cookie_2", "Cookie Value 2", domain = "httpbin.org", path="/cookies")
+
+<v>response<> = requests.get(<v>url<>, cookies = <v>cookies<>)<>
+
+
+### Set Headers
+
+<cb>requests.<v>command<>(<v>url<>, headers = <v>headers_dict<>)<>
+
+
+Example:
+
+<cb>import requests
+
+<v>headers<> = {"Content-type": "text/plain"}
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>', headers = <v>headers<>)<>
+
+
+
+### Set Timeout
+
+<cb>requests.<v>command<>(<v>url<>, timeout=<v>timeout_seconds<>)<>
+
+
+Example:
+
+<cb><#># 10 Second Timeout:<>
+
+<v>response<> = requests.get("https://httpbin.org/get", timeout = 10)<>
+@
+@ time out
+
+
+
+### Set URL Parameters
+
+<cb><v>response<> = requests.<v>command<>(<v>url<>, params = <v>params_dict<>)<>
+
+
+Example:
+
+<cb><#># Sends: https://httpbin.org/post?param_1=value+1&param_2=value+2<>
+
+import requests
+
+<v>url<> = "https://httpbin.org/post"
+
+<v>params<> = {
+        "<v>param_1<>": "value 1",
+        "<v>param_2<>": "value 2"}
+
+<v>response<> = requests.post(<v>url<>, params = <v>params<>)<>
+@
+@ post, put, patch, delete, head, options
+
+
+
+# Send Body / Payload
+
+The following applies to:
+
+    <c>Post<>
+    <c>Put<>
+    <c>Patch<>
+@
+@ send as, post, put, patch
+
+
+
+### Send as Text
+
+<cb>requests.<v>command<>(<v>url<>, data = "<v>payload text<>")<>
+
+
+
+### Send as Binary
+
+<cb>requests.<v>command<>(<v>url<>,
+        data = <v>binary_data<>,
+        headers = {'Content-Type': 'application/octet-stream'})<>
+
+
+
+### Send as Form Data
+
+<cb><v>form_dict<> = {
+        "<v>param 1<>": "<v>value 1<>",
+        "<v>param 2<>": "<v>value 2<>"}
+
+requests.<v>command<>(<v>url<>, data = <v>form_dict<>)<>
+
+
+Pass in form data as a combination of dicts and tuples as needed.
+Content-Type is set to '<c>application/x-www-form-urlencoded<>'
+
+
+Example:
+
+<cb>import requests
+
+<v>url<> = "https://httpbin.org/post"
+
+<v>form_data<> = {
+        "<v>param 1<>": "value 1",
+        "<v>param 2<>": "value 2"}
+
+<v>response<> = requests.post(<v>url<>, data = <v>form_data<>)
+
+print(<v>response<>.text)<>
+@
+@ form-encoded
+
+
+
+### Send As JSON
+
+<cb><v>data_dict<> = {
+        "<v>param 1<>": "<v>value 1<>",
+        "<v>param 2<>": "<v>value 2<>"}
+
+requests.<v>command<>(<v>url<>, json = <v>data_dict<>)<>
+
+
+Pass in data as a combination of dicts and tuples as needed.
+Content-Type is set to '<c>application/json<>'
+
+
+Example:
+
+<cb><v>url<> = "https://httpbin.org/post"
+
+<v>data<> = {
+        "<v>param_1<>": "value 1",
+        "<v>param_2<>": "value 2"}
+
+<v>response<> = requests.post(<v>url<>, json = <v>data<>)<>
+
+
+
+### Attach Files
+
+<cb><v>files<> = {'<v>file<>':
+       ('<v>file_name<>', <v>file_data<>)}
+
+requests.post(<v>url<>, files = <v>files<>)<>
+
+Using File:
+
+<cb>files = {'<v>file<>':
+       ('<v>file_name<>', open(<v>file_name<>, 'rb'))}<>
+
+Set File Type:
+
+<cb>files = {'<v>file<>':
+       ('<v>file_name<>', <v>file_data<>, "<v>file_type<>")}<>
+
+Multiple Files:
+
+<cb><v>files<> = {
+        '<v>file_1<>': ('<v>file_1_name<>', <v>data_1<>),
+        '<v>file_2<>': ('<v>file_2_name<>', <v>data_2<>)}<>
+
+
+Example:
+
+<cb><v>files<> = {'<v>llamas_file<>':
+        ('<v>llamas.jpg<>', open(<v>llamas.jpg<>, 'rb'), "image/jpeg")}
+
+requests.post('https://httpbin.org/post', files = <v>files<>)<>
+
+
+
+# Response Content
+@
+@ get
+
+
+
+### Response Content - As Text
+
+<cb>= <v>response_1<>.text<>
+
+
+Returns: <c>str<>
+@
+@ response.text, .text
+
+
+
+### Response Content - As JSON
+
+<cb>= <v>response_1<>.json()<>
+
+
+Returns: <c>dict<>
+
+
+
+### Response Content - As Binary
+
+<cb>= <v>response_1<>.content<>
+
+
+Returns: <c>bytes<>
+@
+@ response.content, .content
+
+
+
+### Response Content - Size
+
+<cb>= len(<v>response_1<>.content)<>
+@
+@ count, length, len()
+
+
+
+# Response Properties
+
+
+
+### Response - Get Cookies
+
+<cb>= <v>response_1<>.cookies<>
+
+
+Returns: <c>(requests.cookies.RequestsCookieJar)<>
+
+
+Treat like a <c>dict<>.
+
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>')
+
+
+<#># Get Cookie Value:<>
+
+<v>value<> = <v>response<>.cookies['<v>cookie-name<>']
+
+
+<#># Print All:<>
+
+for <v>name<>, <v>value<> in <v>response<>.cookies.items():
+    print(<v>name<>, '=', <v>value<>)<>
+@
+@ response.cookies, .cookies
+
+
+
+### Response - Get Headers
+
+<cb>= <v>response_1<>.headers<>
+
+
+Returns: <c>(requests.structures.CaseInsensitiveDict)<>
+
+
+Treat like a <c>dict<>.
+
+
+Example:
+
+<cb>import requests
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>')
+
+<v>content_type<> = <v>response<>.headers['<v>content-type<>']
+
+for name, value in <v>response<>.headers.items():
+    print(f'{name} = {value}')<>
+@
+@ response.headers, .headers
+
+
+
+### Response - Get Status Code
+
+<cb>= <v>response_1<>.status_code<>
+@
+@ response.status_code, .status_code, get
+
+
+
+### Response - Get URL
+
+<cb>= <v>response_1<>.url<>
+@
+@ get, response.url, .url
+
+
+
+# Response Operations
+
+
+### Response -  Raise Error
+
+<cb><v>response_1<>.raise_for_status()<>
+
+
+Will raise <c>HTTPError<>  for 400 and 500 level error codes.
+
+
+All HTTP Codes:
+<l>/s/http?search=http+response+codes<>
+
+HTTP Error Codes:
+<l>/s/http?search=http+response+error<>
+@
+@ response.raise_for_status(), .raise_for_status(), error handling
+
+
+
+### Response - Handle HTTP 400/500
+
+Basic:
+
+<cb>from requests.exceptions import HTTPError
+
+try:
+
+    <v>response<> = requests.get(<v>url<>)
+    <v>response<>.raise_for_status()
+
+except HTTPError as <v>exception<>:
+
+    <v>...<><>
+
+Error Code:
+
+<cb>= <v>exception<>.response.status_code<>
+
+Error Message:
+
+<cb>= <v>exception<>.args[0]<>
+
+
+<c>raise_for_status()<> checks for status codes in the 400s or 500s.
+If found, it will raise <c>HTTPError<>.
+
+
+All HTTP Codes:
+<l>/s/http?search=http+response+codes<>
+
+HTTP Error Codes:
+<l>/s/http?search=http+response+error<>
+
+
+
+Example:
+
+<cb>from requests.exceptions import HTTPError
+
+try:
+
+    <v>response<> = requests.get("https://httpbin.org/status/503")
+    <v>response<>.raise_for_status()
+
+except HTTPError as <v>exception<>:
+
+    <v>status<> = <v>exception<>.response.status_code
+    <v>message<> = <v>exception<>.args[0]<>
+@
+@ error handling, status code, .raise_for_status(), httperror
+@ .response.status_code, .status_code, .args[0]
+
+
+
+### Response - Handle Connection Error
+
+Basic:
+
+<cb>from requests.exceptions import ConnectionError
+
+try:
+
+    <v>response<> = requests.get(<v>url<>)
+
+except ConnectionError as <v>ex<>:
+
+    <v>...<><>
+@
+@ error handling, ConnectionError
+
+
+
+### Response - Handle Timeout
+
+Basic:
+
+<cb>from requests.exceptions import ConnectTimeout
+
+try:
+
+    <v>response<> = requests.get(<v>url<>)
+
+except ConnectTimeout as <v>timeout<>:
+
+    <v>...<><>
+
+
+Throws <c>ConnectTimeout<> when the connection times out.
+The default timeout is 75 seconds.
+
+
+Example:
+
+<cb>from requests.exceptions import ConnectTimeout
+
+try:
+
+    <v>response<> = requests.get("https://www.google.com:81")
+
+except ConnectTimeout as <v>exception<>:
+
+    print("Timed out.")<>
+@
+@ error handling, timeout, time out, ConnectTimeout
+
+
+
+### Response - Handle All Exceptions
+
+Basic:
+
+<cb>from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectTimeout
+from requests.exceptions import HTTPError
+
+try:
+
+    <v>response<> = requests.get(<v>url<>)
+    <v>response<>.raise_for_status()
+
+except HTTPError as <v>exception<>:
+
+    <#># 400, 500 Level Error Codes<>
+    <v>...<>
+
+except ConnectionError as <v>exception<>:
+
+    <#># Connection Failed<>
+    <v>...<>
+
+except ConnectTimeout as <v>timeout<>:
+
+    <#># Timed Out<>
+    <v>...<><>
+
+
+Example:
+
+<cb>from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectTimeout
+from requests.exceptions import HTTPError
+
+try:
+
+    <v>response<> = requests.get("https://httpbin.org/status/503")
+    <v>response<>.raise_for_status()
+
+except HTTPError as <v>exception<>:
+
+    <v>status<> = <v>exception<>.response.status_code
+    <v>message<> = <v>exception<>.args[0]
+
+    print("Request failed: " + str(<v>status<>) + ", " + <v>message<>)
+
+except ConnectionError as <v>exception<>:
+
+    print("Connection failed: " + str(<v>exception<>))
+
+except ConnectTimeout as <v>timeout<>:
+
+    print("Timed out")<>
+@
+@ error handling, status code, timeout, time out
+@ ConnectionError, ConnectTimeout, HTTPError
+
+
+
+# Reference
+
+
+### Timeout - Default
+The default timeout is 75 seconds.
+
+It will raise <c>ConnectTimeout<>.
+@
+@ time out
+
+
