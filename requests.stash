@@ -1,19 +1,16 @@
 # <#>Requests<> SpeedSheet
 <b>Find what you need, faster.<>
 
-<*>Use <b>Search<> to Find Answers Fast (above)
-Answers Get Right To The Point
-Covers The <b>requests HTTP Library<> for Python<>
+A http requests library for Python.
 
+
+<image "requests-example.webp">
 
 
 # Online Links
 
-
-
 ### Requests Documents
 <l>https://docs.python-requests.org/en/master/<>
-
 
 
 ### Requests Library on PyPi
@@ -21,7 +18,6 @@ Covers The <b>requests HTTP Library<> for Python<>
 
 
 # Library
-
 
 ## Install Library - pip
 
@@ -51,7 +47,10 @@ Command:
 
 
 
-# Request Basics - POST / JSON
+# Request Basics
+
+
+### POST / JSON - Basic Request
 
 <cb>import requests
 
