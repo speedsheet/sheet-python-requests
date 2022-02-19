@@ -415,6 +415,7 @@ requests.post('https://httpbin.org/post', files = <v>files<>)<>
 Returns: <c>str<>
 @
 @ response.text, .text
+@ to
 
 
 
@@ -424,6 +425,9 @@ Returns: <c>str<>
 
 
 Returns: <c>dict<>
+@
+@ .json()
+@ to
 
 
 
@@ -435,6 +439,7 @@ Returns: <c>dict<>
 Returns: <c>bytes<>
 @
 @ response.content, .content
+@ to, bytes
 
 
 
@@ -443,6 +448,7 @@ Returns: <c>bytes<>
 <cb>= len(<v>response_1<>.content)<>
 @
 @ count, length, len()
+@ find, get
 
 
 
@@ -511,6 +517,8 @@ for name, value in <v>response<>.headers.items():
 ### Response - Get Status Code
 
 <cb>= <v>response_1<>.status_code<>
+
+Returns: <c>int<>
 @
 @ response.status_code, .status_code, get
 
