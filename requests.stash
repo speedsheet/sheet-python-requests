@@ -1,26 +1,52 @@
 # <#>Requests<> SpeedSheet
-<b>Find what you need, faster.<>
+<b>Find it faster.<>
 
-A http requests library for Python.
+This is interactive <b>requests<> cheat sheet. Requests is a powerful but simple to use http requests library for Python. Use the search to instantly get answers.
+
+<table><col><b>Basics<>
+
+<*><link "?q=hello-world-only">Hello World<>
+<link "?q=install-only">Install<>
+<link "?q=examples-only">Examples<><>
+
+<*><link "?q=online-only">Online Docs<>
+<link "?q=ref-only">Reference<><><><col>            <><col><b>Request<>
+
+<*><link "?q=request-only">Requests<>
+<link "?q=request-verbs-only">Request Actions<>
+<link "?q=request-properties-only">Request Properties<>
+<link "?q=request-body-only">Request Body<><>
+
+<b>Response<>
+
+<*><link "?q=response-only">Response<>
+<link "?q=response-body-only">Response Body<>
+<link "?q=response-properties-only">Response Properties<>
+<link "?q=errors-only">Error Handling<><><><>
 
 
-# Online Links
+
+# Online Documents
+@
+@ online-only
 
 ### Requests Documents
 <l>https://docs.python-requests.org/en/master/<>
-
 
 ### Requests Library on PyPi
 <l>https://pypi.org/project/requests/<>
 
 
+
 # Library
+
 
 ## Install Library - pip
 
 <cb>pip install requests<>
 @
 @ command, commandline
+@ install-only
 
 
 
@@ -35,6 +61,7 @@ Command:
 <cb>pip install -r requiremets.txt<>
 @
 @ command, commandline
+@ install-only
 
 
 
@@ -44,33 +71,86 @@ Command:
 
 
 
-# Request Basics
+# Hello World
+
+Create and run the following python script. This makes a GET request to <c><l>https://httpbin.org<><> and prints out the body.
+
+Http Bin returns a body that contains information about the call in JSON form.
 
 
-### POST / JSON - Basic Request
+File Name:
+
+<cb>hello.py<>
+
+File Contents:
 
 <cb>import requests
 
-<v>url<> = "https://httpbin.org/post"
+<v>response<> = requests.get('<v>https://httpbin.org/get<>')
+
+print(<v>response<>.text)<>
+
+Run From The Command-line:
+
+<cb>python3 hello.py<>
+@
+@ hello-world-only
+
+
+
+# Examples
+@
+@ example-only, examples-only
+
+
+
+### Example - GET
+
+<cb>import requests
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>')
+
+print(<v>response<>.text)<>
+
+
+
+### Example - GET / JSON
+
+<cb>import requests
+
+<v>url<> = "<v>https://httpbin.org/get<>"
+
+<v>response<> = requests.get(<v>url<>)
+<v>response_data<> = <v>response<>.json()
+
+print("JSON:", <v>response_data<>)<>
+
+
+
+### Example - POST / JSON
+
+<cb>import requests
+
+<v>url<> = "<v>https://httpbin.org/post<>"
 
 <v>request_data<> = {
         "field-1": "value 1",
         "field-2": "value 2"}
 
-<v>response<> = requests.post (<v>url<>, json = <v>request_data<>)
+<v>response<> = requests.post(<v>url<>, json = <v>request_data<>)
 <v>response_data<> = <v>response<>.json()
 
 print("url:", <v>response<>.url)
 print("status:", <v>response<>.status_code)
 print("JSON:", <v>response_data<>)<>
-@
-@ example, hello world, hello-world
 
 
 
-# Send Request Verbs
+# Request - Send Verbs
 @
 @ make, call url, commands
+@ request-only, requests-only, request-verbs-only, request-actions-only
+@ send-only, send-verbs-only, send-actions-only, verbs-only, actions-only
 
 
 
@@ -101,7 +181,7 @@ Example:
 
 import requests
 
-<v>url<> = "https://httpbin.org/get"
+<v>url<> = "<v>https://httpbin.org/get<>"
 
 <v>params<> = {
     "<v>param_1<>": "value 1",
@@ -197,9 +277,127 @@ Example:
 
 
 
-# Request Properties
+# Request - Body / Payload
+
+The following applies to:
+
+    <c>Post<>
+    <c>Put<>
+    <c>Patch<>
+@
+@ send as, post, put, patch
+@ request, request-only, requests-only, request-body-only, send-body-only, request-payload-only, send-payload-only, payload-only
+@ body-only
+
+
+
+### Send as Text
+
+<cb>requests.<v>command<>(<v>url<>, data = "<v>payload text<>")<>
+
+
+
+### Send as Binary
+
+<cb>requests.<v>command<>(<v>url<>,
+        data = <v>binary_data<>,
+        headers = {'Content-Type': 'application/octet-stream'})<>
+
+
+
+### Send as Form Data
+
+<cb><v>form_dict<> = {
+        "<v>param 1<>": "<v>value 1<>",
+        "<v>param 2<>": "<v>value 2<>"}
+
+requests.<v>command<>(<v>url<>, data = <v>form_dict<>)<>
+
+
+Pass in form data as a combination of dicts and tuples as needed.
+Content-Type is set to '<c>application/x-www-form-urlencoded<>'
+
+
+Example:
+
+<cb>import requests
+
+<v>url<> = "<v>https://httpbin.org/post<>"
+
+<v>form_data<> = {
+        "<v>param 1<>": "value 1",
+        "<v>param 2<>": "value 2"}
+
+<v>response<> = requests.post(<v>url<>, data = <v>form_data<>)
+
+print(<v>response<>.text)<>
+@
+@ form-encoded
+
+
+
+### Send As JSON
+
+<cb><v>data_dict<> = {
+        "<v>param 1<>": "<v>value 1<>",
+        "<v>param 2<>": "<v>value 2<>"}
+
+requests.<v>command<>(<v>url<>, json = <v>data_dict<>)<>
+
+
+Pass in data as a combination of dicts and tuples as needed.
+Content-Type is set to '<c>application/json<>'
+
+
+Example:
+
+<cb><v>url<> = "<v>https://httpbin.org/post<>"
+
+<v>data<> = {
+        "<v>param_1<>": "value 1",
+        "<v>param_2<>": "value 2"}
+
+<v>response<> = requests.post(<v>url<>, json = <v>data<>)<>
+
+
+
+### Attach Files
+
+<cb><v>files<> = {'<v>file<>':
+       ('<v>file_name<>', <v>file_data<>)}
+
+requests.post(<v>url<>, files = <v>files<>)<>
+
+Using File:
+
+<cb>files = {'<v>file<>':
+       ('<v>file_name<>', open(<v>file_name<>, 'rb'))}<>
+
+Set File Type:
+
+<cb>files = {'<v>file<>':
+       ('<v>file_name<>', <v>file_data<>, "<v>file_type<>")}<>
+
+Multiple Files:
+
+<cb><v>files<> = {
+        '<v>file_1<>': ('<v>file_1_name<>', <v>data_1<>),
+        '<v>file_2<>': ('<v>file_2_name<>', <v>data_2<>)}<>
+
+
+Example:
+
+<cb><v>files<> = {'<v>llamas_file<>':
+        ('<v>llamas.jpg<>', open(<v>llamas.jpg<>, 'rb'), "image/jpeg")}
+
+requests.post('https://httpbin.org/post', files = <v>files<>)<>
+
+
+
+# Request - Properties
 @
 @ send
+@ request-only, requests-only, request-properties-only, properties-only
 
 
 
@@ -223,7 +421,7 @@ Example:
 
 <cb>import requests
 
-<v>url<> = "https://httpbin.org/cookies"
+<v>url<> = "<v>https://httpbin.org/cookies<>"
 
 <v>cookies<> = requests.cookies.RequestsCookieJar()
 
@@ -274,7 +472,7 @@ Example:
 
 import requests
 
-<v>url<> = "https://httpbin.org/post"
+<v>url<> = "<v>https://httpbin.org/post<>"
 
 <v>params<> = {
         "<v>param_1<>": "value 1",
@@ -286,125 +484,10 @@ import requests
 
 
 
-# Send Body / Payload
-
-The following applies to:
-
-    <c>Post<>
-    <c>Put<>
-    <c>Patch<>
+# Response - Body
 @
-@ send as, post, put, patch
-
-
-
-### Send as Text
-
-<cb>requests.<v>command<>(<v>url<>, data = "<v>payload text<>")<>
-
-
-
-### Send as Binary
-
-<cb>requests.<v>command<>(<v>url<>,
-        data = <v>binary_data<>,
-        headers = {'Content-Type': 'application/octet-stream'})<>
-
-
-
-### Send as Form Data
-
-<cb><v>form_dict<> = {
-        "<v>param 1<>": "<v>value 1<>",
-        "<v>param 2<>": "<v>value 2<>"}
-
-requests.<v>command<>(<v>url<>, data = <v>form_dict<>)<>
-
-
-Pass in form data as a combination of dicts and tuples as needed.
-Content-Type is set to '<c>application/x-www-form-urlencoded<>'
-
-
-Example:
-
-<cb>import requests
-
-<v>url<> = "https://httpbin.org/post"
-
-<v>form_data<> = {
-        "<v>param 1<>": "value 1",
-        "<v>param 2<>": "value 2"}
-
-<v>response<> = requests.post(<v>url<>, data = <v>form_data<>)
-
-print(<v>response<>.text)<>
-@
-@ form-encoded
-
-
-
-### Send As JSON
-
-<cb><v>data_dict<> = {
-        "<v>param 1<>": "<v>value 1<>",
-        "<v>param 2<>": "<v>value 2<>"}
-
-requests.<v>command<>(<v>url<>, json = <v>data_dict<>)<>
-
-
-Pass in data as a combination of dicts and tuples as needed.
-Content-Type is set to '<c>application/json<>'
-
-
-Example:
-
-<cb><v>url<> = "https://httpbin.org/post"
-
-<v>data<> = {
-        "<v>param_1<>": "value 1",
-        "<v>param_2<>": "value 2"}
-
-<v>response<> = requests.post(<v>url<>, json = <v>data<>)<>
-
-
-
-### Attach Files
-
-<cb><v>files<> = {'<v>file<>':
-       ('<v>file_name<>', <v>file_data<>)}
-
-requests.post(<v>url<>, files = <v>files<>)<>
-
-Using File:
-
-<cb>files = {'<v>file<>':
-       ('<v>file_name<>', open(<v>file_name<>, 'rb'))}<>
-
-Set File Type:
-
-<cb>files = {'<v>file<>':
-       ('<v>file_name<>', <v>file_data<>, "<v>file_type<>")}<>
-
-Multiple Files:
-
-<cb><v>files<> = {
-        '<v>file_1<>': ('<v>file_1_name<>', <v>data_1<>),
-        '<v>file_2<>': ('<v>file_2_name<>', <v>data_2<>)}<>
-
-
-Example:
-
-<cb><v>files<> = {'<v>llamas_file<>':
-        ('<v>llamas.jpg<>', open(<v>llamas.jpg<>, 'rb'), "image/jpeg")}
-
-requests.post('https://httpbin.org/post', files = <v>files<>)<>
-
-
-
-# Response Content
-@
-@ get
-
+@ get, content
+@ response-only, responses-only, response-body-only, body-only, response-content-only, content-only
 
 
 ### Response Content - As Text
@@ -452,8 +535,9 @@ Returns: <c>bytes<>
 
 
 
-# Response Properties
-
+# Response - Properties
+@
+@ response-only, responses-only, response-properties-only
 
 
 ### Response - Get Cookies
@@ -532,7 +616,10 @@ Returns: <c>int<>
 
 
 
-# Response Operations
+# Error Handling
+@
+@ errors-only, error-handling-only
+@ response-only, responses-only
 
 
 ### Response -  Raise Error
@@ -722,6 +809,8 @@ except ConnectTimeout as <v>timeout<>:
 
 
 # Reference
+@
+@ ref-only, reference-only
 
 
 ### Timeout - Default
