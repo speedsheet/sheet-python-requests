@@ -10,7 +10,13 @@ This is interactive <b>requests<> cheat sheet. Requests is a powerful but simple
 <link "?q=examples-only">Examples<><>
 
 <*><link "?q=online-only">Online Docs<>
-<link "?q=ref-only">Reference<><><><col>            <><col><b>Request<>
+<link "?q=ref-only">Reference<><>
+
+<b>Related SpeedSheets<>
+
+<*><l "python">Python<>
+<l "aiohttp">aiohttp<>
+<l "beautiful_soup">Beautiful Soup<><><><col>            <><col><b>Request<>
 
 <*><link "?q=request-only">Requests<>
 <link "?q=request-verbs-only">Request Actions<>
@@ -805,6 +811,48 @@ except ConnectTimeout as <v>timeout<>:
 @
 @ error handling, status code, timeout, time out
 @ ConnectionError, ConnectTimeout, HTTPError
+
+
+
+# How To
+@
+@ how-to-only
+
+
+### Set Header - Content Type
+
+<cb><v>headers<> = {"Content-type": "<v>text/plain<>"}<>
+
+
+Example:
+
+<cb>import requests
+
+<v>headers<> = {"Content-type": "<v>text/plain<>"}
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>', headers = <v>headers<>)<>
+
+
+See: <l "http?q=mime-types-only">Content / Mime Types<>
+@
+@ mime, content-type
+
+
+
+### Set Header - User Agent
+
+<cb><v>headers<> = {"User-Agent": "<v>text/plain<>"}<>
+
+
+Example:
+
+<cb>import requests
+
+<v>headers<> = {"User-Agent": "<v>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82<>"}
+
+<v>response<> = requests.get('<v>https://httpbin.org/get<>', headers = <v>headers<>)<>
+@
+@ user-agent
 
 
 
