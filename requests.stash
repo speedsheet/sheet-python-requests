@@ -841,7 +841,7 @@ See: <l "http?q=mime-types-only">Content / Mime Types<>
 
 ### Set Header - User Agent
 
-<cb><v>headers<> = {"User-Agent": "<v>text/plain<>"}<>
+<cb><v>headers<> = {"User-Agent": "<v>agent_signature<>"}<>
 
 
 Example:
